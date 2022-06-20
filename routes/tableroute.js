@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const Table = require("../models/table");
-const tablemodel = require("../models/table");
+// const tablemodel = require("../models/table");
 
 router.post("/add", async (req, res) => {
   try {
-    const createtable = await new tablemodel({
+    const createtable = await new Table({
       Name: req.body.Name,
       Price: req.body.Price,
       Quantity: req.body.Quantity,
@@ -22,7 +22,7 @@ router.post("/add", async (req, res) => {
 
 router.get("/get", async (req, res) => {
   try {
-    await tablemodel.find((err, data) => {
+    await Table.find((err, data) => {
       if (data != "") {
         res.json({ result: data });
       } else {
@@ -30,7 +30,7 @@ router.get("/get", async (req, res) => {
       }
     });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
